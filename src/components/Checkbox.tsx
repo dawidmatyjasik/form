@@ -3,9 +3,10 @@ import React from "react";
 type CheckboxProps = {
   isChecked: boolean;
   setIsChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  text: string;
 };
 
-const Checkbox = ({ isChecked, setIsChecked }: CheckboxProps) => {
+const Checkbox = ({ isChecked, setIsChecked, text }: CheckboxProps) => {
   return (
     <label>
       <input
@@ -13,9 +14,7 @@ const Checkbox = ({ isChecked, setIsChecked }: CheckboxProps) => {
         checked={isChecked}
         onChange={() => setIsChecked(!isChecked)}
       />
-      <span className={`${isChecked ? "text-black" : "text-red-500"}`}>
-        Wyrażam zgodę na przetwarzanie danych RODO
-      </span>
+      <span className={`${isChecked ? "text-black" : "text-red-500"}`}></span>
     </label>
   );
 };

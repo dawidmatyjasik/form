@@ -115,7 +115,11 @@ function App() {
         setValue={setNip}
         passed={validate.nip}
       />
-      <Checkbox isChecked={isChecked} setIsChecked={setIsChecked} />
+      <Checkbox
+        isChecked={isChecked}
+        setIsChecked={setIsChecked}
+        text="Wyrażam zgodę na przetwarzanie danych RODO"
+      />
       <button type="submit" className="w-24" onClick={(e) => handleSubmit(e)}>
         Wyślij
       </button>
