@@ -11,7 +11,7 @@ const App = () => {
     nip: "",
   });
   const [formErrors, setFormErrors] = useState({});
-  const [blur, setBlur] = useState({});
+  // const [blur, setBlur] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
@@ -30,7 +30,7 @@ const App = () => {
 
   useEffect(() => {
     if (isSubmit) setFormErrors(validate(formValues));
-  }, [formValues]);
+  }, [formValues, isSubmit]);
 
   /*   const handleBlur = (e) => {
     if (!isSubmit) {
