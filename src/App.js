@@ -11,7 +11,6 @@ const App = () => {
     nip: "",
   });
   const [formErrors, setFormErrors] = useState({});
-  // const [blur, setBlur] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
@@ -29,16 +28,15 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (isSubmit) setFormErrors(validate(formValues));
+    if (isSubmit) setFormErrors(validate(formValues, isSubmit));
   }, [formValues, isSubmit]);
 
-  /*   const handleBlur = (e) => {
-    if (!isSubmit) {
-      const values = validate(formValues);
-      setBlur({ ...blur, [e.target.name]: values[e.target.name] });
-      setFormErrors(blur);
-    }
-  }; */
+  const handleBlur = (e) => {
+    const validated = validate(formValues, isSubmit, e.target.name);
+    setFormErrors((prevState) => {
+      return { ...prevState, ...validated };
+    });
+  };
 
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -56,7 +54,7 @@ const App = () => {
             onChange={handleChange}
             error={formErrors.name}
             type="text"
-            // handleBlur={handleBlur}
+            handleBlur={handleBlur}
           />
           <Input
             label="Email"
@@ -66,7 +64,7 @@ const App = () => {
             onChange={handleChange}
             error={formErrors.email}
             type="email"
-            // handleBlur={handleBlur}
+            handleBlur={handleBlur}
           />
 
           <Input
@@ -77,7 +75,7 @@ const App = () => {
             onChange={handleChange}
             error={formErrors.phone}
             type="tel"
-            // handleBlur={handleBlur}
+            handleBlur={handleBlur}
           />
           <Input
             label="NIP"
@@ -87,7 +85,7 @@ const App = () => {
             onChange={handleChange}
             error={formErrors.nip}
             type="number"
-            // handleBlur={handleBlur}
+            handleBlur={handleBlur}
           />
         </div>
         <button
