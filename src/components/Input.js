@@ -10,8 +10,11 @@ const Input = ({
 }) => {
   return (
     <div className="form__container">
-      <label className="form__label">{label}</label>
+      <label className="form__label" htmlFor={name}>
+        {label}
+      </label>
       <input
+        id={name}
         className="form__input"
         placeholder={placeholder}
         name={name}

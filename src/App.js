@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Input from "./components/Input";
 import { validate } from "./utils/validate";
 import "./App.scss";
+import InputCheckbox from "./components/InputCheckbox";
 
 const App = () => {
   const [formValues, setFormValues] = useState({
@@ -9,6 +10,7 @@ const App = () => {
     email: "",
     phone: "",
     nip: "",
+    rodo: false,
   });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -26,7 +28,6 @@ const App = () => {
       alert("Logged in");
     }
   };
-
   useEffect(() => {
     if (isSubmit) setFormErrors(validate(formValues, isSubmit));
   }, [formValues, isSubmit]);
@@ -38,6 +39,10 @@ const App = () => {
     });
   };
 
+  const handleChecked = (e) => {
+    const { name } = e.target;
+    setFormValues({ ...formValues, [name]: !formValues[name] });
+  };
   return (
     <form className="form" onSubmit={handleSubmit}>
       <div className="form__wrapper">
@@ -86,6 +91,13 @@ const App = () => {
             error={formErrors.nip}
             type="number"
             handleBlur={handleBlur}
+          />
+          <InputCheckbox
+            name="rodo"
+            value={formValues.rodo}
+            handleChecked={handleChecked}
+            label="Zapoznałem się z regulaminem przetwarzania danych RODO"
+            error={formErrors.rodo}
           />
         </div>
         <button
