@@ -10,6 +10,7 @@ const InputCheckbox = ({ name, value, handleChecked, label, error }) => {
         type="checkbox"
         value={value}
         onChange={handleChecked}
+        data-testid="checkbox"
       />
       <label
         htmlFor={name}
