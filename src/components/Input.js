@@ -7,6 +7,7 @@ const Input = ({
   error,
   type,
   handleBlur,
+  test,
 }) => {
   return (
     <div className="form__container">
@@ -22,6 +23,7 @@ const Input = ({
         onChange={onChange}
         type={type}
         onBlur={handleBlur}
+        data-testid={name}
       />
       <p className="form__error">{error}</p>
     </div>
